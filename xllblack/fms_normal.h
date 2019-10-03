@@ -10,7 +10,7 @@
 #endif
 
 namespace fms::normal {
-
+	//
     // Normal probability density function.
     inline double pdf(double x, double mu = 0, double sigma = 1)
     {
