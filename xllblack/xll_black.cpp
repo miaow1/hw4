@@ -1,5 +1,4 @@
 // xll_black.cpp
-
 //!!! Implement XLL.BLACK.PUT(f, sigma, k, t) and XLL.BLACK.CALL(f, sigma, k, t)
 //!!! Document both function.
 //!!! Test both function. 
@@ -7,18 +6,16 @@
 //!!! Also test call value for these parameters.
 
 #include "fms_black.h"
- #include "../xll12/xll/xll.h"
- #include "../xll12/xll/shfb/entities.h"
- #include "iostream"
+#include "../xll12/xll/xll.h"
+#include "../xll12/xll/shfb/entities.h"
+#include "iostream"
+#ifndef CATEGORY
+#define CATEGORY L"XLL"
+#endif
+using namespace xll;
 
- #ifndef CATEGORY
- #define CATEGORY L"XLL"
- #endif
-
- using namespace xll;
-
- //put
- static AddIn xai_black_put(
+//put
+static AddIn xai_black_put(
  	Function(XLL_DOUBLE, L"?xll_black_put", L"XLL.BLACK.PUT")
  	.Arg(XLL_DOUBLE, L"f", L"is the present value of the underlying forward.")
  	.Arg(XLL_DOUBLE, L"sigma", L"is the standard deviation of price of the forward.")
@@ -59,9 +56,8 @@
 
  #ifdef _DEBUG
 
- test test_black_put([] {
- 	double a = xll_black_put(100, 0.2, 100, 0.25);
- 	double b = abs(a - 3.988);
- 	ensure(b < 0.05);
+ test test_black_call([] {
 
- });#endif 
+   	ensure(std::round(xll_black_call(100, 0.2, 100, 0.25) * 1000.0) / 1000.0 == 3.988);
+
+ 	});#endif 
